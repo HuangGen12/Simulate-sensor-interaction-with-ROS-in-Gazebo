@@ -1,0 +1,14 @@
+<launch>
+  <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" >
+    <arg name="world_name" value="$(find camera_urdf)/cc.world"/>
+  </include>
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find camera_urdf)/kinect/model.urdf -urdf -model model"
+    output="screen" />
+  <node name="camera" pkg="camera" type="camera"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find camera_urdf)/camera.rviz"/>
+</launch>
